@@ -13,6 +13,7 @@
 			background-color: #32D1FF;
 			margin: 0 auto;
 			text-align: center;
+			margin-bottom: 20px;
 		}
 		
 		#container {
@@ -28,9 +29,11 @@
 		
 		h1 {
 			font-family: Pacifico, "Helvetica Neue", Helvetica, sans-serif;
-			color: #fff;
-			font-size: 48pt;
-			text-shadow: 0px -2px 0px #333;
+			font-size: 72pt;
+			text-indent: -9999px;
+			background-image: url('foocam_doritos.png');
+			background-position: center;
+			background-repeat: no-repeat;
 		}
 		
 		#photo {
@@ -47,9 +50,10 @@
 		#footer {
 			margin: 0 auto;
 			text-align: center;
+			margin-top: 20px;
 		}
 		
-		h2 {
+		#about {
 			float: right;
 			font-family: "Helvetica Neue", Helvetica, sans-serif;
 			font-size: 9pt;
@@ -57,12 +61,42 @@
 			color: #fff;
 			font-weight: normal;
 			text-shadow: 0px -1px 0px #333;
+			margin-top: 6px;
 		}
 		
 		#fave {
 			float: left;
+			font-family: "Helvetica Neue", Helvetica, sans-serif;
+			font-size: 9pt;
+			background-color: #fff;
+			color: #333;
+			width: 50px;
+			padding: 5px;
+			border: 1px solid #0095da;
+			border-radius: 5px;
+			-webkit-transition: background-color 0.2s linear;
+			margin-bottom: 20px;
+		}
+		
+		#fave:hover {
+			cursor:pointer;
+			/*box-shadow: 0px 0px 5px #888;*/
+			background-color: #dfdfdf;
+		}
+		
+		#link {
+			float: left;
+			font-family: "Helvetica Neue", Helvetica, sans-serif;
+			font-size: 9pt;
+			margin-left: 10px;
+			margin-top: 6px;
+		}
+		
+		a {
+			color: #fff;
 		}
 	</style>
+	<link rel="stylesheet" href="mobile.css" type="text/css" media="only screen and (max-width: 960px)" title="no title" charset="utf-8">
 	<script type="text/javascript" charset="utf-8">
 		function refresh() {
 			window.location.reload();
@@ -70,7 +104,15 @@
 		function auto() {
 			setTimeout("refresh()", 1000 * 120);
 		}
+		
+		function fave() {
+			var caption = prompt("Add a caption?");
+			$.post("http://thesis.scottjackson.org/foo", {caption: caption}, function(data) {
+				alert("Posted!");
+			});
+		}
 	</script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
 <body onload="auto()">
 	<div id="container">
@@ -81,10 +123,13 @@
 			<img id="screengrab" src="grab.jpg" alt="" />
 		</div>
 		<div id="footer">
-			<div id="fave">
+			<div id="fave" onclick="fave()">
 				Fave!
 			</div>
-			<h2>Lovingly crafted by the great Scotts.</h2>
+			<div id="link">
+				<a href="http://foocamfaves.tumblr.com">FooCam Faves</a>
+			</div>
+			<div id="about">Lovingly crafted by the great Scotts.</div>
 		</div>
 	</div>
 </body>
