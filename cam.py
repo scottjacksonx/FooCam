@@ -57,14 +57,12 @@ class NSImageTest(NSObject):
 
     def startImageCapture(self, aTimer):
         error = None
-        print "Finding camera"
 
         # Create a QT Capture session
         self.session = QTKit.QTCaptureSession.alloc().init()
 
         # Find iSight device and open it
         dev = QTKit.QTCaptureDevice.defaultInputDeviceWithMediaType_(QTKit.QTMediaTypeVideo)
-        print "Device: %s" % dev
         if not dev.open_(error):
             print "Couldn't open capture device."
             return
@@ -86,7 +84,6 @@ class NSImageTest(NSObject):
         print "Initiating capture..."
         self.session.startRunning()
 
-
     def main(self):
         # Callback that quits after a frame is captured
         NSTimer.scheduledTimerWithTimeInterval_target_selector_userInfo_repeats_(0.1, 
@@ -106,5 +103,15 @@ class NSImageTest(NSObject):
 while 1:
 	test = NSImageTest.alloc().init()
 	test.main()
-	print time.time()
-	time.sleep(60 * 2)
+	for i in range(0, 120):
+		if i == 0:
+			print "120 seconds to next capture..."
+		elif i == 30:
+			print "90 seconds to next capture..."
+		elif i == 60:
+			print "60 seconds to next capture..."
+		elif i == 90:
+			print "30 seconds to next capture..."
+		if i >= 100:
+			print str(120 - i) + " seconds until next capture..."
+		time.sleep(1)
