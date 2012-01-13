@@ -1,6 +1,6 @@
 # FooCam #
 
-Every two minutes, FooCam takes a photo and uploads it to the web.
+Every two minutes, FooCam takes a photo of the lab and uploads it to the web.
 
 ## The Site ##
 
